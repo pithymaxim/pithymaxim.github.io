@@ -60,7 +60,7 @@ Both the 2015-2019 and 2020 waves of the NCVS ask respondents to identify the ty
 The 2020 NCVS elicits more granular information on crime locations than the 2015-2019 NCVS.  We map the more granular 2020 location categories on to the less granular 2019 location categories as follows. Crimes that occurred in these locations are considered to be residential crimes: 1) in one's own dwelling, own attached garage or enclosed porch, 2) in a detached building on one's own property, 3) in a vacation/second home, 4) in a hotel or motel room that the respondent was staying in, 5) in one's own yard or driveway, 6) in a hallway, laundry room or storage area in one's own apartment building or 7) in a yard belonging to one's own apartment building. All other crimes are assumed to have occurred in a public location.
 
 \subsection{Safegraph data}
-We use the SafeGraph Neighborhood Patterns data \citep{sg_neighb} to calculate a count of people in each Census Block Group (CBG) every month. We build this off of the ``device home areas'' column, which gives a count of visitors by the visitors' home CBG. The home CBG is needed for weighting: we scale the number of visits from each CBG by the inverse of the sampling probability in that CBG, following \citet{sg_scale}. CBG populations are downloaded from SafeGraph's Open Census data, and the counts of devices in each CBG comes from SafeGraph's monthly Neighborhood Home Panel Summary files. The population of each CBG from Census, along with SafeGraph's reported device sample within each origin CBG, allows us to calculate the sampling probability each month.
+We use the SafeGraph Neighborhood Patterns data \citep{sg_neighb} to calculate a count of people in each Census Block Group (CBG) every month. We build this off of the ``device home areas'' column, which gives a count of visitors by the visitors' home CBG. The home CBG is needed for weighting: we scale the number of visits from each CBG by the inverse of the sampling probability in that CBG, following \citet{van2020using} and \citet{sg_scale}. CBG populations are downloaded from SafeGraph's Open Census data, and the counts of devices in each CBG comes from SafeGraph's monthly Neighborhood Home Panel Summary files. The population of each CBG from Census, along with SafeGraph's reported device sample within each origin CBG, allows us to calculate the sampling probability each month.
 
 
 \clearpage
@@ -167,7 +167,7 @@ Note: Figure plots the number of non-residential (public) violent crimes per 1 m
 As the ATUS was temporarily suspended from mid-March until mid-May 2020 due to public health concerns, we are not able to observe the change in victimization risk that occurred just after the beginning of the pandemic.\footnote{See: \url{https://www.bls.gov/tus/covid19.htm}.} However, for the remainder of the year, estimates of victimization risk using the Safegraph data and the ATUS survey data are substantively the same: that the risk of street crime victimization increased markedly in Spring 2020 and remained elevated --- by approximately 10\% --- during the remainder of the year.
 
  
-\subsection{Alternative Measure of Public Locations}
+\subsection{Alternative Measure of Public Locations}  \label{sec:alt_public}
 
 We begin by plotting the change in the incidence and risk of public violence using an alternative definition of what it means for the crime to have occurred in public.  \autoref{fig:city_crime_alt_combined} is analogous to \autoref{fig:city_crime_combined} except it uses a more limited definition of public violence. In this figure, we count only crimes that occurred on streets, alleyways, public parks, or transit system. Estimated changes in risk are extraordinarily similar to the main estimates reported in the paper.
 
@@ -190,7 +190,11 @@ We begin by plotting the change in the incidence and risk of public violence usi
 \end{figure}
 
 \subsection{Changes in Outdoor Time Use}
-Here, we address the possibility that the types of activities people engaged in while in public may have changed in 2020. To the extent that people spent more time engaged in activities that carry a higher degree of inherent risk, the increase in victimization risk that we observe could be an artifact of a shift in time use. In Appendix Figure \ref{fig:atus_where}, we plot the share of time spent in retail establishments and restaurants, at work or school, in one's car and walking for the 2015-2020 period. While the overall amount of time spent outdoors in 2020 was lower than in previous years, there is no clear change in the mix of activities. Of special note is outdoor time spent walking which has hovered between 16\% and 19\% throughout the 2015-2020 period.
+Here, we address the possibility that the types of activities people engaged in while in public may have changed in 2020. To the extent that people spent more time engaged in activities that carry a higher degree of inherent risk, the increase in victimization risk that we observe could be an artifact of a shift in time use. In Appendix Figure \ref{fig:atus_where}, we plot the share of time away from home spent in retail establishments and restaurants, at work or school, in a vehicle, at a place of worship, and walking for the 2015-2020 period. While the overall amount of time spent outdoors in 2020 was lower than in previous years, there is no dramatic change in the mix of activities. 
+
+Time spent walking was a slightly lower percent of time in public in 2020 (12\%) as opposed to 2019 (16\%). Time spent in businesses appears to increase sharply in 2020, although this may be an artifact of an anomalously low point estimate in 2019. The percent of time spent at workplaces or school, in a vehicle, or in place of worship were only slightly changed compared to 2019. The results align with \citet{jay2020neighbourhood}, using a different SafeGraph dataset, showing relatively uniform declines across places of interest. 
+
+Importantly, the results show that time spent commuting was a smaller share of time in public in 2020. Since previous studies have found that time in transit has the highest risk of victimization \citep{vaughan2021promise, lemieux2012risk}, this suggests that activities in public were slightly less risky based on historical patterns. However, more granular data is needed to judge this conclusively.
 
 \begin{figure}
 \begin{center}
@@ -198,10 +202,44 @@ Here, we address the possibility that the types of activities people engaged in 
 \caption{Change in outdoor time use}
 \label{fig:atus_where}
 \end{center}
-        \vspace*{0mm}  \\ 
-    \newline 
-Note: This shows changes in where ATUS respondents spent their time away from home, using broad categories of their responses to the ``where'' question.
+        \vspace*{0mm} 
+Note: This shows changes in where ATUS respondents spent their time away from home, using broad categories of their responses to the ``where'' question. We restrict to respondents living in urban areas in the months April-December. There were no reported visits to places of worship in 2018. \textbf{Categories:} Retail/Restaurant includes time spent at a restaurant or bar, grocery story, other store / mall, library, bank, gym, post office. Work or School is respondent's workplace or school. Transit includes cars, buses, subways, trains, bicycles, boats, and airplanes. Walking is only walking. Worship is place of worship.The Other category includes outdoors away from home and unspecified.'' 
 \end{figure}
+
+\newpage
+\clearpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Statistical Inference} \label{sec:inference}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Our analysis studies the evolution of victimization risk in U.S. cities between 2019 and 2020.  The available evidence suggests that while the crime rate fell in 2020, the probability of being attacked in public rose. The data, however, are derived from a sample and so it is natural to wonder whether the observed difference could be an artifact of sampling variability. In this appendix we provide details for how we derive a sampling distribution for the comparisons we make in the main body of the paper.
+
+Our core estimand is the change in risk between 2019 to 2020, where risk is measured as crimes divided by activity. In all analyses, the measures of crime and activity come from different data sources so standard parametric inferential procedures are unavailable. 
+Instead we generate confidence intervals using a bootstrap procedure in which we sample 1,000 times from the underlying data. We perform two separate analysis --- one for our national-level analysis using survey data from the ATUS and the NCVS and one for our analysis of city-level crimes and Safegraph data.  We describe each of these procedures in further detail and present confidence intervals below.
+
+\paragraph{National-Level Analysis Using Survey Data} The American Time Use Survey (ATUS) and National Crime Victimization Survey (NCVS) are both random samples of U.S. households. In the ATUS, we bootstrap sample at the household level, stratifying by month and year and the stratification variables used in the ATUS: race (Hispanic, Non-Hispanic Black, Non-Hispanic Nonblack) and four household types based on the age of residing children \citep{atus_user_guide}. In the NCVS, we bootstrap at the household level using the provided sample stratification variable. We re-sample 1,000 times with replacement, each time computing our key estimand: the percent change in risk, where risk is the number of victimizations per hour spent in a public space. This procedure captures variability in this statistic that is an artifact of sampling error.
+
+\paragraph{City-Level Analysis Using SafeGraph data} The city-level crime data that we use \citep{nyc_crime_data, chicago_crime_data, la_crime_data} are not samples. These data provide a population-level measure of the numerator in our analysis: crimes known to law enforcement in each city. Hence these counts remain constant in the bootstrap procedure.
+
+The SafeGraph data originates from mobile phone location data. Sampling variability arises from the fact that locations are recorded for only a sample of city visitors. We do not have access to the underlying individual-level data, so we cannot replicate the core sampling procedure. Instead, our bootstrap method re-sample from the U.S. Census Block Group $\times$ month observations provided in Safegraph's Neighborhood Patterns data \citep{sg_neighb}.  We thus simulate a scenario in which the data had covered a sample, drawn randomly with replacement, of \textit{neighborhoods}. Since the neighborhood is a much larger sampling unit than a person, this should arguably generate a more conservative confidence interval by increasing the variability in the estimates of the change in aggregate activity. \\
+
+We present the results of this procedure in Appendix Table \ref{tab:atus_ncvs_table}. For the city-level analysis, we find that public victimization risk rose by 14\% in the combined NYC, Los Angeles and Chicago sample. The bootstrap 95\% confidence interval around this estimate ranges from 12.4\% to 15.7\%, indicating that a positive estimate is highly unlikely to be an artifact of sampling error. 
+
+Next we turn to the national analysis using survey data. Here, our estimates are based on a nationally representative sample of American individuals and households. Our principal estimate is the risk public violence among residents of metropolitan areas. For this sample, we estimate that victimization risk rose by 24\% (row 4), although the 95\% confidence interval includes zero. As a check that to ensure that the finding is not an artifact of sampling variability, we  present estimates that toggle the restrictions used for the NCVS (outside, violent, and metro). We show estimates for all public crimes in the Unites States (row 1), all public violent crimes in the United States (row 2) and public crimes in metropolitan areas (row 3). In rows 1 and 2, all ATUS respondents are used instead of just those in urban areas to align with the NCVS sample. While the confidence intervals are wider using the survey data (which are sparser) and sometimes cross zero, the analyses taken together suggest that it is unlikely that any of these results are an artifact of sampling variability. $p$-values range from 0.01 to 0.13.
+
+
+
+%We present the results of this procedure in Appendix Table \ref{tab:city_sg_table} (city-level analysis) and Appendix Table \ref{tab:atus_ncvs_table} (national analysis). For the city-level analysis, we find that public victimization risk rose by 11\% in NYC, 23\% in Los Angeles and 3\% in Chicago. For NYC and Los Angeles, these estimates are highly significant with confidence intervals ranging from 8\%-13\% for NYC and 21\%-25\% for Los Angeles. In Chicago, where the change in victimization risk was much smaller, the confidence interval (-1\% to +7\%) overlaps with zero. 
+
+%Next we turn to the national analysis using survey data. Here, our estimates are based on a nationally representative sample of American individuals and households. Our principle estimate is for public violence among residents living in metropolitan areas. For this sample, we estimate that victimization risk rose by 24\%. We also present estimates for all public crimes in the Unites States (row 1), public violent crimes in the United States (row 2) and public crimes in metropolitan areas (row 3). While the confidence intervals are wider using the survey data (which are sparser) and sometimes cross zero, the evidence suggests that it is unlikely that any of these results are an artifact of sampling variability. $p$-values range from 0.01 to 0.08.
+
+\newpage
+\input{tables.tex}
 
 
 \newpage
@@ -227,13 +265,13 @@ To the extent that victims became more reluctant to report crimes to law enforce
      \end{center}
         \vspace*{-8mm}  
         \newline 
-Note: Figure plots the percentage of non-residential (public) violent crimes reported to law enforcement in the 2015-2019 and 2020 waves of the National Crime Victimization Survey (NCVS). For each survey wave, the point estimate is provided along with a 95\% confidence interval.
+Note: Figure plots the percentage of non-residential (public) violent crimes reported to law enforcement in the 2015-2019 and 2020 waves of the National Crime Victimization Survey (NCVS), restricted to the third and fourth quarter surveys. For each survey wave, the point estimate is provided along with a 95\% confidence interval.
 \end{figure}
 To address this concern, we use an NCVS question on whether victims reported crimes to law enforcement. Appendix Figure \ref{fig:reporting_rate} presents the share of outdoor violent crimes that victims reported crimes to police among respondents interviewed in the 2015-2019 and 2020 waves of the survey. To maintain consistency with our administrative data from large cities, we focus on survey respondents living in metropolitan areas. Contrary to concerns that crime reporting may have fallen during the pandemic, the rate at which outdoor violent crimes were reported to the police was not unusual in 2020.
 
 
-\subsection{Selection} \label{sec:selection}
-A second potential issue is selection, the possibility that the composition of individuals who spent time outdoors and were therefore at risk of street crime victimization changed in 2020. Since the pandemic has had unequal public health impacts according to gender, race, and especially age \citep[e.g.][]{hutchins2020covid, miller2021estimated}, each of which is among the strongest predictors of victimization risk \citep[e.g.][]{perkins1997age}, this is a critical concern. In the extreme, it is possible that the aggregate risk of victimization could increase while decreasing for every demographic group, a case of Simpson's paradox \citep{blyth1972simpson}. In this section, we motivate three tests for the importance of selection using national data on time use from the ATUS, city-specific data on realized crime victimization, and within-neighborhood changes in victimization risk derived from both municipal microdata and Safegraph patterns data. None of the three tests suggests that the increase in victimization risk that we observe after March 2020 is likely to be an artifact of selection.
+\subsection{Victim Selection} \label{sec:selection}
+A second potential explanation is victim selection, the possibility that the composition of individuals who spent time outdoors and were therefore at risk of street crime victimization changed in 2020. Since the pandemic has had unequal public health impacts according to gender, race, and especially age \citep[e.g.][]{hutchins2020covid, miller2021estimated}, each of which is among the strongest predictors of victimization risk \citep[e.g.][]{perkins1997age}, this is a concern for someone who would like to understand how victimization risk changed for the typical American resident. In the extreme, it is possible that the aggregate risk of victimization could increase while decreasing for every demographic group, a case of Simpson's paradox \citep{blyth1972simpson}. In this section, we motivate three tests for the importance of victim selection using national data on time use from the ATUS, city-specific data on realized crime victimization, and within-neighborhood changes in victimization risk derived from both municipal microdata and Safegraph patterns data. None of the three tests suggests that the increase in victimization risk that we observe after March 2020 is likely to be an artifact of selection.
 
 \subsubsection{Test of demographic selection using national survey data} \label{sec:demog_selection}
 Our first test of selection uses a DFL-style reweighting exercise \citep{dinardo1996labor} to assess the contribution of selection into activity to the crime rate. This computation addresses how crime would have changed if activity had evolved as observed and victimization rates were fixed at their pre-2020 levels. 
@@ -321,7 +359,7 @@ Note: Figure provides descriptive evidence on time use and victimization rates p
 
 %Finally, we assess the presence of demographic selection effects directly using crime microdata from NYC and Los Angeles, where data on the demography of crime victims are available. If our finding of an increase in risk is driven by selection, crime victims in 2020 should, in general, be those who have higher baseline victimization risk than in the past. Evidence from this analysis is presented in Appendix \ref{selection2} and suggests that changes in the demography of potential crime victims is unlikely to account for a meaningful share of the large increase in victimization risk that we observe in the data. Consistent with the above analysis, 2020 crime victims had lower, not higher, historical rates of victimization.
 
-We can also assess the size of potential selection effects directly using crime microdata from NYC and Los Angeles. If our finding of an increase in risk is driven by selection, crime victims in 2020 should, in general, be at a higher risk of victimization than they were in the past. We can probe this possibility using data on victim demographics. As in the main results, we restrict to violent crimes that occurred outdoors.
+We can also assess the size of potential selection effects directly using crime microdata from NYC and Los Angeles. If our finding of an increase in risk is driven by selection, crime victims in 2020 should, in general, be those who have higher baseline victimization risk than in the past. We can probe this possibility using data on victim demographics. As in the main results, we restrict to violent crimes that occurred outdoors.
 
 We match each victim to their expected victimization rate according to their age, race, and gender based on data from the 2015-2019 National Crime Victimization Surveys (NCVS), restricting to outdoor crimes and to respondents living in cities with populations over one million. We use 24 demographic cells in total, representing the interaction of three race/ethnicity groups (White, Black, Hispanic), two genders (male, female), and four age groups (12-18, 18-24, 25-44, 45+).\footnote{The last age group is an imperfect match with the NCVS, which bins all ages 35-49. Victims 45+ in the NYC and LA crime data are matched with NCVS respondents over 50.} More formally, the NCVS data yields $v_g$, a victimization rate for group $g$, with $g \in \{ 1,...,24\}$ where, e.g., $v_1$ could be the victimization rate White females under 18 which is 20 per 1,000 (per year). Next, we assign the victimization rate $v_g$ to each crime in the NYC and LA data according to victim demographics and calculate the average victimization rate for each quarter $q$:
 \begin{equation}
@@ -408,5 +446,31 @@ We plot coefficients $\beta_k$ and the associated 95\% confidence intervals in \
 
 
 
+\newpage
+\clearpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Heterogeneity in the Change in Risk} \label{sec:heterogeneity}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+In 2020, the risk of public crime victimization rose in U.S. cities. A natural next step is to consider whether the changes were heterogeneous. In other words, did some demographic subgroups disproportionately bear the burden of increased crime risk? Given that risk rose between as well as within neighborhoods, the scope for heterogeneous treatment effects is narrower than an unconditional analysis would allow. Nevertheless, using national survey data from the ATUS and the NCVS, we compute the change in victimization risk by age ($<$35, $>$35), gender and race (White, Black, Other). These estimates are presented in Appendix Table \ref{tab:atus_ncvs_demog_table}, along with 95\% confidence intervals calculated as in \autoref{sec:inference}.  Unfortunately, the effectively small samples mean that all changes are measured with a high degree of uncertainty.  Given the width of the confidence intervals, we are unable to make any strong claims about which groups experienced an outsize change in victimization risk.
 
+%\newpage 
+\clearpage
+\begin{table}[]
+    \caption{Change in risk for demographic groups, NCVS and ATUS}
+    \label{tab:atus_ncvs_demog_table}
+    \begin{center}
+    \begin{tabular}{lcc}
+    Demographic & Percent change in risk & 95\% CI \\ \hline
+    \input{figs/atus_ncvs_demog_table}
+    \hline 
+    \end{tabular}
+    \end{center}
+    \textit{Note:} This table shows the percent change in risk for select demographic groups using the ATUS and NCVS, restricing to respondents in metro areas (ATUS and NCVS) and to violent offenses outside (NCVS). Confidence intervals are calculated using the same bootstrap procedure described in \autoref{sec:inference}. 
+\end{table}
 
